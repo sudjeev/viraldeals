@@ -40,6 +40,7 @@ app.post('/webhook/', function (req, res) {
             let text = event.message.text
             sendTextMessage(sender, "Here are todays deals:")
             showDeals(sender);
+            sendTextMessage(sender, "www.google.com")
         }
     }
     res.sendStatus(200)
