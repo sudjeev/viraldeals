@@ -38,7 +38,8 @@ app.post('/webhook/', function (req, res) {
         let sender = event.sender.id
         if (event.message && event.message.text) {
             let text = event.message.text
-            sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+            sendTextMessage(sender, "Here are todays deals:")
+            showDeals(sender);
         }
     }
     res.sendStatus(200)
@@ -64,4 +65,57 @@ function sendTextMessage(sender, text) {
             console.log('Error: ', response.body.error)
         }
     })
+}
+
+function showDeals(sender) {
+
+    let messageData = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [{
+                    "title": "Payless Shoes",
+                    "subtitle": "15% Off Regular Price Purchases",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Payless_ShoeSource_Logo.svg/1280px-Payless_ShoeSource_Logo.svg.png",
+                    "buttons": [{
+			                "type":"postback",
+			                "title":"Show Code",
+			                "payload":"PAYLESS_COUPON"
+			              },
+			              {
+			              	"type":"element_share"
+			              }],
+                },{
+                    "title": "Footlocker",
+                    "subtitle": "15% Off $70+ Online",
+                    "image_url": "http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/082012/foot_locker_primary_logo_-_no_url_cmyk.png?itok=hIb7I0Xr",
+                    "buttons": [{
+			                "type":"postback",
+			                "title":"Show Code",
+			                "payload":"FOOT_LOCKER_COUPON"
+			              },
+			              {
+			              	"type":"element_share"
+			              }],
+                }]
+            }
+        }
+    }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+
 }
