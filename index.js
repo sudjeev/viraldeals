@@ -91,6 +91,7 @@ const token = "EAAHcENr18boBAA7t7PlsvJqA5Fd01ZCSI57Sn5ZA29qX59SyWTctpWVvwce6NHZC
 
 function sendShopButton(sender, code, brand, website) {
 
+	let messageData = {}
 
 	if (code == "") {
 		let text = "No code needed"
@@ -98,7 +99,7 @@ function sendShopButton(sender, code, brand, website) {
 
 		let title = "Shop " + brand
 
-		let messageData = {
+		messageData = {
 
 			"attachment":{
 	      "type":"template",
@@ -122,7 +123,7 @@ function sendShopButton(sender, code, brand, website) {
 
 		let title = "Shop " + brand
 
-		let messageData = {
+		messageData = {
 			"attachment":{
 	      "type":"template",
 	      "payload":{
