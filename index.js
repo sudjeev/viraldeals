@@ -92,7 +92,7 @@ const token = "EAAHcENr18boBAA7t7PlsvJqA5Fd01ZCSI57Sn5ZA29qX59SyWTctpWVvwce6NHZC
 function sendShopButton(sender, code, brand, website) {
 
 
-	if (code != "") {
+	if (code == "") {
 		let text = "No code needed"
 		sendTextMessage(sender, text);
 
