@@ -86,7 +86,9 @@ app.post('/webhook/', function (req, res) {
     res.sendStatus(200)
 })
 
-const token = "EAAHcENr18boBAA7t7PlsvJqA5Fd01ZCSI57Sn5ZA29qX59SyWTctpWVvwce6NHZCoVczQq1qse1ggyG4xK2KbmcaMNZAepF8clnu6g0dXjxy0NhQeHMZBCau6pCK4fuJCiq6L4fM2iRHMiOwuPlHXbawKZAfl0hO4ZB7ffN4dBDrwZDZD"
+
+
+const token = "EAAHcENr18boBAAHFIVprwgeiCUIaX67rZBObosOFLckLVlIn8U2CfVixIZA9QuKfOHnY9DvRwpOxZClZBV5ELQGDAIExyIAK5gQfnHEHYtZBWLG7ax28B6kiWiWS3ihZCx9v58QyZCVWJLZClKgJs8deFYPf9D9qfjZC7ZBFYpmpcGeQZDZD"
 
 
 function sendShopButton(sender, code, brand, website) {
