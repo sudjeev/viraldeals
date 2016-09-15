@@ -47,17 +47,37 @@ app.post('/webhook/', function (req, res) {
         	console.log(event.postback)
 
         	switch (event.postback.payload) {        		
-        		case "FOOT_LOCKER_COUPON":
-        			sendTextMessage(sender, "LKS1694N")
-        			sendTextMessage(sender, "http://www.footlocker.com")
+        		case "DOORDASH_COUPON":
+        			sendTextMessage(sender, "rmn")
+        			sendTextMessage(sender, "https://www.doordash.com/")
         		break;
-        		case "PAYLESS_COUPON":
-        			sendTextMessage(sender, "ZZRTMN15")
-        			sendTextMessage(sender, "http://www.payless.com/homepage/")
+        		case "AEROPOSTAL_COUPON":
+        			sendTextMessage(sender, "No code needed. Go straight to shopping!")
+        			sendTextMessage(sender, "http://www.aeropostale.com/shop/index.jsp?categoryId=3534619")
         		break;
-        		case "SMASHBOX_COUPON":
-        			sendTextMessage(sender, "MAKEOVER")
-        			sendTextMessage(sender, "http://www.smashbox.com/offers")
+        		case "PACSUN_COUPON":
+        			sendTextMessage(sender, "RMNBTS16")
+        			sendTextMessage(sender, "http://www.pacsun.com/on/demandware.store/Sites-pacsun-Site/default/Default-Start?XCID=a:OOTtr9mlaCk-_-482&ranEAID=OOTtr9mlaCk&ranMID=39758&ranSiteID=OOTtr9mlaCk-NnY53irDEWbAczyW3bGhLw")
+        		break;
+        		case "TARGET_COUPON":
+        			sendTextMessage(sender, "STYLE")
+        			sendTextMessage(sender, "http://www.target.com/c/women-s-clothing/-/N-5xtcm?clkid=68ae8702N26cd09411c38776c9f715e24&lnm=309326&afid=WhaleShark+Media%2C+Inc.&ref=tgt_adv_xasd0002")
+        		break;
+        		case "KHOLS_COUPON":
+        			sendTextMessage(sender, "HARVEST30")
+        			sendTextMessage(sender, "http://www.kohls.com/?src=OOTtr9mlaCk&utm_campaign=449535&utm_medium=affiliate&utm_source=OOTtr9mlaCk&utm_content=8571&utm_term=3&siteID=OOTtr9mlaCk-vO6uJADV1OANA.ji9Qs8iQ")
+        		break;
+        		case "VICTORIAS_SECRET_COUPON":
+        			sendTextMessage(sender, "SAVINGS30")
+        			sendTextMessage(sender, "https://www.victoriassecret.com/clothing?")
+        		break;
+        		case "EXPRESS_COUPON":
+        			sendTextMessage(sender, "1641")
+        			sendTextMessage(sender, "http://www.express.com/")
+        		break;
+        		case "AMAZON_COUPON":
+        			sendTextMessage(sender, "No code needed. Go straight to shopping!")
+        			sendTextMessage(sender, "https://www.amazon.com/gp/feature.html/?ie=UTF8&camp=1789&creative=390957&docId=1000805651&linkCode=ur2&tag=ret-20&ascsubtag=uuuF3E76956-C659-53B3-6E25-5113E5576049")
         		break;
         	}
 
@@ -97,42 +117,129 @@ function showDeals(sender) {
             "payload": {
                 "template_type": "generic",
                 "elements": [{
-                    "title": "Payless Shoes",
-                    "subtitle": "15% Off Regular Price Purchases",
-                    "image_url": "https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Payless_ShoeSource_Logo.svg/1280px-Payless_ShoeSource_Logo.svg.png",
+                    "title": "Aeropostal",
+                    "subtitle": "Get up to 60% off online",
+                    "image_url": "https://o.rmncdn.com/thumbs/logos/l/aeropostale.com-coupons.jpg",
                     "buttons": [{
 			                "type":"postback",
 			                "title":"Show Code",
-			                "payload":"PAYLESS_COUPON"
+			                "payload":"AEROPOSTAL_COUPON"
 			              },
 			              {
 			              	"type":"element_share"
 			              }],
                 },{
-                    "title": "Footlocker",
-                    "subtitle": "15% Off $70+ Online",
-                    "image_url": "http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/082012/foot_locker_primary_logo_-_no_url_cmyk.png?itok=hIb7I0Xr",
+                    "title": "Doordash",
+                    "subtitle": "$5 off your first order of $20+",
+                    "image_url": "https://o.rmncdn.com/thumbs/logos/l/doordash.com-coupons.jpg",
                     "buttons": [{
 			                "type":"postback",
 			                "title":"Show Code",
-			                "payload":"FOOT_LOCKER_COUPON"
+			                "payload":"DOORDASH_COUPON"
 			              },
 			              {
 			              	"type":"element_share"
 			              }],
                 },{
-                    "title": "Smashbox",
-                    "subtitle": "20% Off Any Order",
-                    "image_url": "http://www.wearemoviegeeks.com/wp-content/uploads/Smashbox-Logo.jpg",
+                    "title": "Subway",
+                    "subtitle": "In Store: $3.50 Sub Of The Day",
+                    "image_url": "https://o.rmncdn.com/thumbs/logos/l/subway.com-coupons.jpg",
+                    "buttons": [
+                    {
+                    	"type":"web_url"
+                    	"title":"Store Locator",
+    									"url":"http://www.subway.com/en-us/findastore",
+                       "webview_height_ratio": "full"
+                    },
+			              {
+			              	"type":"element_share"
+			              }],
+                },{
+                    "title": "Pacsun",
+                    "subtitle": "20% off any regularly priced item",
+                    "image_url": "https://o.rmncdn.com/thumbs/logos/l/doordash.com-coupons.jpg",
                     "buttons": [{
 			                "type":"postback",
 			                "title":"Show Code",
-			                "payload":"SMASHBOX_COUPON"
+			                "payload":"PACSUN_COUPON"
 			              },
 			              {
 			              	"type":"element_share"
 			              }],
-                }]
+                },{
+                    "title": "Target",
+                    "subtitle": "$10 off $40 clothing",
+                    "image_url": "https://o.rmncdn.com/thumbs/logos/l/target.com-coupons.jpg",
+                    "buttons": [{
+			                "type":"postback",
+			                "title":"Show Code",
+			                "payload":"TARGET_COUPON"
+			              },
+			              {
+			              	"type":"element_share"
+			              }],
+                },{
+                    "title": "Kohl's",
+                    "subtitle": "30% Off with Charge",
+                    "image_url": "https://o.rmncdn.com/thumbs/logos/l/kohls.com-coupons.jpg",
+                    "buttons": [{
+			                "type":"postback",
+			                "title":"Show Code",
+			                "payload":"KHOLS_COUPON"
+			              },
+			              {
+			              	"type":"element_share"
+			              }],
+                },{
+                    "title": "Victoria's Secret",
+                    "subtitle": "Extra 30% Off Lounge & Clearance",
+                    "image_url": "https://o.rmncdn.com/thumbs/logos/l/victoriassecret.com-coupons.jpg",
+                    "buttons": [{
+			                "type":"postback",
+			                "title":"Show Code",
+			                "payload":"VICTORIAS_SECRET_COUPON"
+			              },
+			              {
+			              	"type":"element_share"
+			              }],
+                },{
+                    "title": "Express",
+                    "subtitle": "$25 Off Every $100",
+                    "image_url": "https://o.rmncdn.com/thumbs/logos/l/express.com-coupons.jpg",
+                    "buttons": [{
+			                "type":"postback",
+			                "title":"Show Code",
+			                "payload":"EXPRESS_COUPON"
+			              },
+			              {
+			              	"type":"element_share"
+			              }],
+                },{
+                    "title": "7-Eleven",
+                    "subtitle": "BOGO Free Slurpee",
+                    "image_url": "https://o.rmncdn.com/thumbs/logos/l/7-eleven.com-coupons.jpg",
+                    "buttons": [{
+                    	"type":"web_url"
+                    	"title":"Store Locator",
+    									"url":"https://www.7-eleven.com/locator",
+                      "webview_height_ratio": "full"
+                    },
+			              {
+			              	"type":"element_share"
+			              }],
+                },{
+                    "title": "Amazon",
+                    "subtitle": "Up to 50% Off Electronics",
+                    "image_url": "https://o.rmncdn.com/thumbs/logos/l/amazon.com-coupons.jpg",
+                    "buttons": [{
+			                "type":"postback",
+			                "title":"Show Code",
+			                "payload":"AMAZON_COUPON"
+			              },
+			              {
+			              	"type":"element_share"
+			              }],
+                }] 
             }
         }
     }
