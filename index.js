@@ -153,7 +153,7 @@ function showDeals(sender) {
                     "image_url": "https://o.rmncdn.com/thumbs/logos/l/subway.com-coupons.jpg",
                     "buttons": [
                     {
-                    	"type":"web_url"
+                    	"type":"web_url",
                     	"title":"Store Locator",
     									"url":"http://www.subway.com/en-us/findastore",
                        "webview_height_ratio": "full"
@@ -226,7 +226,7 @@ function showDeals(sender) {
                     "subtitle": "BOGO Free Slurpee",
                     "image_url": "https://o.rmncdn.com/thumbs/logos/l/7-eleven.com-coupons.jpg",
                     "buttons": [{
-                    	"type":"web_url"
+                    	"type":"web_url",
                     	"title":"Store Locator",
     									"url":"https://www.7-eleven.com/locator",
                       "webview_height_ratio": "full"
