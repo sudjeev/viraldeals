@@ -117,7 +117,7 @@ function sendShopButton(sender, code, brand, website) {
 		}
 	} else {
 
-		text = "Paste this code at checkout: " 
+		let text = "Paste this code at checkout: " 
 		sendTextMessage(sender, text);
 
 		let title = "Shop " + brand
