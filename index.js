@@ -40,7 +40,26 @@ app.post('/webhook/', function (req, res) {
             let text = event.message.text
             sendTextMessage(sender, "Here are todays deals:")
             showDeals(sender);
-            sendTextMessage(sender, "www.google.com")
+        }
+
+        if(event.postback) {
+
+        	switch (event.postback) {
+        		case "FOOT_LOCKER_COUPON":
+        			sendTextMessage(sender, "LKS1694N")
+        			sendTextMessage(sender, "http://www.footlocker.com")
+        		break;
+        		case "PAYLESS_COUPON":
+        			sendTextMessage(sender, "ZZRTMN15")
+        			sendTextMessage(sender, "http://www.payless.com/homepage/")
+        		break;
+        		case "SMASHBOX_COUPON":
+        			sendTextMessage(sender, "MAKEOVER")
+        			sendTextMessage(sender, "http://www.smashbox.com/offers")
+        		break;
+        	}
+
+        	continue;
         }
     }
     res.sendStatus(200)
@@ -95,6 +114,18 @@ function showDeals(sender) {
 			                "type":"postback",
 			                "title":"Show Code",
 			                "payload":"FOOT_LOCKER_COUPON"
+			              },
+			              {
+			              	"type":"element_share"
+			              }],
+                },{
+                    "title": "Smashbox",
+                    "subtitle": "20% Off Any Order",
+                    "image_url": "http://www.wearemoviegeeks.com/wp-content/uploads/Smashbox-Logo.jpg",
+                    "buttons": [{
+			                "type":"postback",
+			                "title":"Show Code",
+			                "payload":"SMASHBOX_COUPON"
 			              },
 			              {
 			              	"type":"element_share"
