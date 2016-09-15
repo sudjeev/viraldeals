@@ -55,36 +55,28 @@ app.post('/webhook/', function (req, res) {
 
         	switch (event.postback.payload) {        		
         		case "DOORDASH_COUPON":
-        			sendTextMessage(sender, "rmn")
-        			sendTextMessage(sender, "https://www.doordash.com/")
+        			sendShopButton(sender, "rmn", "DoorDash", "https://www.doordash.com/")
         		break;
         		case "AEROPOSTAL_COUPON":
-        			sendTextMessage(sender, "No code needed. Go straight to shopping!")
-        			sendTextMessage(sender, "http://www.aeropostale.com/shop/index.jsp?categoryId=3534619")
+        			sendShopButton(sender, "", "Aeropostal", "http://www.aeropostale.com/shop/index.jsp?categoryId=3534619")
         		break;
         		case "PACSUN_COUPON":
-        			sendTextMessage(sender, "RMNBTS16")
-        			sendTextMessage(sender, "http://www.pacsun.com/on/demandware.store/Sites-pacsun-Site/default/Default-Start?XCID=a:OOTtr9mlaCk-_-482&ranEAID=OOTtr9mlaCk&ranMID=39758&ranSiteID=OOTtr9mlaCk-NnY53irDEWbAczyW3bGhLw")
+        			sendShopButton(sender, "RMNBTS16", "PacSun", "http://www.pacsun.com/on/demandware.store/Sites-pacsun-Site/default/Default-Start?XCID=a:OOTtr9mlaCk-_-482&ranEAID=OOTtr9mlaCk&ranMID=39758&ranSiteID=OOTtr9mlaCk-NnY53irDEWbAczyW3bGhLw")
         		break;
         		case "TARGET_COUPON":
-        			sendTextMessage(sender, "STYLE")
-        			sendTextMessage(sender, "http://www.target.com/c/women-s-clothing/-/N-5xtcm?clkid=68ae8702N26cd09411c38776c9f715e24&lnm=309326&afid=WhaleShark+Media%2C+Inc.&ref=tgt_adv_xasd0002")
+        			sendShopButton(sender, "STYLE", "Target", "http://www.target.com/c/women-s-clothing/-/N-5xtcm?clkid=68ae8702N26cd09411c38776c9f715e24&lnm=309326&afid=WhaleShark+Media%2C+Inc.&ref=tgt_adv_xasd0002")
         		break;
         		case "KHOLS_COUPON":
-        			sendTextMessage(sender, "HARVEST30")
-        			sendTextMessage(sender, "http://www.kohls.com/?src=OOTtr9mlaCk&utm_campaign=449535&utm_medium=affiliate&utm_source=OOTtr9mlaCk&utm_content=8571&utm_term=3&siteID=OOTtr9mlaCk-vO6uJADV1OANA.ji9Qs8iQ")
+        			sendShopButton(sender, "HARVEST30", "Kohl's", "http://www.kohls.com/?src=OOTtr9mlaCk&utm_campaign=449535&utm_medium=affiliate&utm_source=OOTtr9mlaCk&utm_content=8571&utm_term=3&siteID=OOTtr9mlaCk-vO6uJADV1OANA.ji9Qs8iQ")
         		break;
         		case "VICTORIAS_SECRET_COUPON":
-        			sendTextMessage(sender, "SAVINGS30")
-        			sendTextMessage(sender, "https://www.victoriassecret.com/clothing?")
+        			sendShopButton(sender, "SAVINGS30", "Victoria's Secret", "https://www.victoriassecret.com/clothing?")
         		break;
         		case "EXPRESS_COUPON":
-        			sendTextMessage(sender, "1641")
-        			sendTextMessage(sender, "http://www.express.com/")
+        			sendShopButton(sender, "1641", "Express", "http://www.express.com/")
         		break;
         		case "AMAZON_COUPON":
-        			sendTextMessage(sender, "No code needed. Go straight to shopping!")
-        			sendTextMessage(sender, "https://www.amazon.com/gp/feature.html/?ie=UTF8&camp=1789&creative=390957&docId=1000805651&linkCode=ur2&tag=ret-20&ascsubtag=uuuF3E76956-C659-53B3-6E25-5113E5576049")
+        			sendShopButton(sender, "", "Amazon", "https://www.amazon.com/gp/feature.html/?ie=UTF8&camp=1789&creative=390957&docId=1000805651&linkCode=ur2&tag=ret-20&ascsubtag=uuuF3E76956-C659-53B3-6E25-5113E5576049")
         		break;
         	}
 
@@ -96,6 +88,36 @@ app.post('/webhook/', function (req, res) {
 
 const token = "EAAHcENr18boBAA7t7PlsvJqA5Fd01ZCSI57Sn5ZA29qX59SyWTctpWVvwce6NHZCoVczQq1qse1ggyG4xK2KbmcaMNZAepF8clnu6g0dXjxy0NhQeHMZBCau6pCK4fuJCiq6L4fM2iRHMiOwuPlHXbawKZAfl0hO4ZB7ffN4dBDrwZDZD"
 
+
+function sendShopButton(sender, code, brand, website) {
+
+	let text = "No code needed, start shopping!"
+
+	if(code != "") {
+		text = "Paste this code at checkout: " + code
+	}
+
+	let title = "Shop " + brand
+
+	let messageData = {
+
+		"attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"button",
+        "text":text,
+        "buttons":[
+          {
+            "type":"web_url",
+            "url":website,
+            "title": title
+          }
+        ]
+      }
+    }
+
+	}
+}
 
 function sendTextMessage(sender, text) {
     let messageData = { text:text }
@@ -124,8 +146,8 @@ function showDeals(sender) {
             "payload": {
                 "template_type": "generic",
                 "elements": [{
-                    "title": "Aeropostal",
-                    "subtitle": "Get up to 60% off online",
+                    "title": "Get up to 60% off online",
+                    "subtitle": "Aeropostal",
                     "image_url": "https://o.rmncdn.com/thumbs/logos/l/aeropostale.com-coupons.jpg",
                     "buttons": [{
 			                "type":"postback",
@@ -136,8 +158,8 @@ function showDeals(sender) {
 			              	"type":"element_share"
 			              }],
                 },{
-                    "title": "Doordash",
-                    "subtitle": "$5 off your first order of $20+",
+                    "title": "$5 off your first order of $20+",
+                    "subtitle": "Doordash",
                     "image_url": "https://o.rmncdn.com/thumbs/logos/l/doordash.com-coupons.jpg",
                     "buttons": [{
 			                "type":"postback",
@@ -148,8 +170,8 @@ function showDeals(sender) {
 			              	"type":"element_share"
 			              }],
                 },{
-                    "title": "Subway",
-                    "subtitle": "In Store: $3.50 Sub Of The Day",
+                    "title":"$3.50 Sub Of The Day",
+                    "subtitle":"Subway" ,
                     "image_url": "https://o.rmncdn.com/thumbs/logos/l/subway.com-coupons.jpg",
                     "buttons": [
                     {
@@ -162,9 +184,9 @@ function showDeals(sender) {
 			              	"type":"element_share"
 			              }],
                 },{
-                    "title": "Pacsun",
-                    "subtitle": "20% off any regularly priced item",
-                    "image_url": "https://o.rmncdn.com/thumbs/logos/l/doordash.com-coupons.jpg",
+                    "title": "20% off any regularly priced item",
+                    "subtitle": "Pacsun",
+                    "image_url": "https://o.rmncdn.com/thumbs/logos/l/pacsun.com-coupons.jpg",
                     "buttons": [{
 			                "type":"postback",
 			                "title":"Show Code",
@@ -174,8 +196,8 @@ function showDeals(sender) {
 			              	"type":"element_share"
 			              }],
                 },{
-                    "title": "Target",
-                    "subtitle": "$10 off $40 clothing",
+                    "title":  "$10 off $40 clothing",
+                    "subtitle": "Target",
                     "image_url": "https://o.rmncdn.com/thumbs/logos/l/target.com-coupons.jpg",
                     "buttons": [{
 			                "type":"postback",
@@ -186,8 +208,8 @@ function showDeals(sender) {
 			              	"type":"element_share"
 			              }],
                 },{
-                    "title": "Kohl's",
-                    "subtitle": "30% Off with Charge",
+                    "title": "30% Off with Charge",
+                    "subtitle":  "Kohl's",
                     "image_url": "https://o.rmncdn.com/thumbs/logos/l/kohls.com-coupons.jpg",
                     "buttons": [{
 			                "type":"postback",
@@ -198,8 +220,8 @@ function showDeals(sender) {
 			              	"type":"element_share"
 			              }],
                 },{
-                    "title": "Victoria's Secret",
-                    "subtitle": "Extra 30% Off Lounge & Clearance",
+                    "title": "Extra 30% Off Lounge & Clearance",
+                    "subtitle": "Victoria's Secret",
                     "image_url": "https://o.rmncdn.com/thumbs/logos/l/victoriassecret.com-coupons.jpg",
                     "buttons": [{
 			                "type":"postback",
@@ -210,8 +232,8 @@ function showDeals(sender) {
 			              	"type":"element_share"
 			              }],
                 },{
-                    "title": "Express",
-                    "subtitle": "$25 Off Every $100",
+                    "title":"$25 Off Every $100",
+                    "subtitle": "Express",
                     "image_url": "https://o.rmncdn.com/thumbs/logos/l/express.com-coupons.jpg",
                     "buttons": [{
 			                "type":"postback",
@@ -222,8 +244,8 @@ function showDeals(sender) {
 			              	"type":"element_share"
 			              }],
                 },{
-                    "title": "7-Eleven",
-                    "subtitle": "BOGO Free Slurpee",
+                    "title": "BOGO Free Slurpee",
+                    "subtitle": "7-Eleven",
                     "image_url": "https://o.rmncdn.com/thumbs/logos/l/7-eleven.com-coupons.jpg",
                     "buttons": [{
                     	"type":"web_url",
@@ -235,8 +257,8 @@ function showDeals(sender) {
 			              	"type":"element_share"
 			              }],
                 },{
-                    "title": "Amazon",
-                    "subtitle": "Up to 50% Off Electronics",
+                    "title": "Up to 50% Off Electronics",
+                    "subtitle": "Amazon",
                     "image_url": "https://o.rmncdn.com/thumbs/logos/l/amazon.com-coupons.jpg",
                     "buttons": [{
 			                "type":"postback",
