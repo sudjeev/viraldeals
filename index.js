@@ -91,33 +91,51 @@ const token = "EAAHcENr18boBAA7t7PlsvJqA5Fd01ZCSI57Sn5ZA29qX59SyWTctpWVvwce6NHZC
 
 function sendShopButton(sender, code, brand, website) {
 
-	let text = "No code needed, start shopping!"
 
-	if(code != "") {
+	if (code != "") {
+		let text = "No code needed"
+		sendTextMessage(sender, text);
+
+		let title = "Shop " + brand
+
+		let messageData = {
+
+			"attachment":{
+	      "type":"template",
+	      "payload":{
+	        "template_type":"button",
+	        "text":"Start Shopping!",
+	        "buttons":[
+	          {
+	            "type":"web_url",
+	            "url":website,
+	            "title": title
+	          }
+	        ]
+	      }
+	    }
+		}
+	} else {
+
 		text = "Paste this code at checkout: " 
+		sendTextMessage(sender, text);
+
+		let title = "Shop " + brand
+
+		let messageData = {
+			"attachment":{
+	      "type":"template",
+	      "payload":{
+	        "template_type":"button",
+	        "text":code,
+	        "buttons":[
+	          {
+	            "type":"web_url",
+	            "url":website,
+	            "title": title
+	          }]}}}
 	}
 
-	sendTextMessage(sender, text);
-
-	let title = "Shop " + brand
-
-	let messageData = {
-
-		"attachment":{
-      "type":"template",
-      "payload":{
-        "template_type":"button",
-        "text":code,
-        "buttons":[
-          {
-            "type":"web_url",
-            "url":website,
-            "title": title
-          }
-        ]
-      }
-    }
-	}
 
 	request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
