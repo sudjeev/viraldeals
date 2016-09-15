@@ -46,7 +46,7 @@ app.post('/webhook/', function (req, res) {
         	
         	console.log(event.postback)
 
-        	switch (event.postback) {        		
+        	switch (event.postback.payload) {        		
         		case "FOOT_LOCKER_COUPON":
         			sendTextMessage(sender, "LKS1694N")
         			sendTextMessage(sender, "http://www.footlocker.com")
