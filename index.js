@@ -94,8 +94,10 @@ function sendShopButton(sender, code, brand, website) {
 	let text = "No code needed, start shopping!"
 
 	if(code != "") {
-		text = "Paste this code at checkout: " + code
+		text = "Paste this code at checkout: " 
 	}
+
+	sendTextMessage(sender, text);
 
 	let title = "Shop " + brand
 
@@ -105,7 +107,7 @@ function sendShopButton(sender, code, brand, website) {
       "type":"template",
       "payload":{
         "template_type":"button",
-        "text":text,
+        "text":code,
         "buttons":[
           {
             "type":"web_url",
