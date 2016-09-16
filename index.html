@@ -40,12 +40,37 @@
     </style>
   </head>
   <body>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId: "1766806056909685",
+          xfbml: true,
+          version: "v2.6"
+        });
+
+      };
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) { return; }
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
     <div class="container">
       <center>
         <img class="backgroundImage" src="/images/background2.png" alt="Logo">
       </center>
       <center>
         <a class="privacyLink" href="/privacy">Privacy Policy</a>
+      </center>
+      <center>
+        <div class="fb-send-to-messenger"
+          messenger_app_id="1766806056909685"
+          page_id="1137794902963554"
+          color="blue" 
+          size="standard">
+        </div>
       </center>
     </div>
   </body>
